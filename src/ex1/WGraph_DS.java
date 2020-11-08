@@ -92,8 +92,6 @@ public class WGraph_DS implements weighted_graph {
     /**
      * This method return a pointer (shallow copy) for a
      * Collection representing all the nodes in the graph.
-     * Note: this method should run in O(1) tim
-     *
      * @return Collection<node_data>
      */
     @Override
@@ -104,8 +102,6 @@ public class WGraph_DS implements weighted_graph {
     /**
      * This method returns a Collection containing all the
      * nodes connected to node_id
-     * Note: this method can run in O(k) time, k - being the degree of node_id.
-     *
      * @param node_id
      * @return Collection<node_data>
      */
@@ -119,8 +115,6 @@ public class WGraph_DS implements weighted_graph {
     /**
      * Delete the node (with the given ID) from the graph -
      * and removes all edges which starts or ends at this node.
-     * This method should run in O(n), |V|=n, as all the edges should be removed.
-     *
      * @param key
      * @return the data of the removed node (null if none).
      */
@@ -141,8 +135,6 @@ public class WGraph_DS implements weighted_graph {
 
     /**
      * Delete the edge from the graph,
-     * Note: this method should run in O(1) time.
-     *
      * @param node1
      * @param node2
      */
