@@ -28,8 +28,10 @@ public class WGraph_DS implements weighted_graph {
         for (int i : g.nodes.keySet()) {
             Node temp = (Node) nodes.get(i);
             Node temp_2 = (Node) g.nodes.get(i);
-            for (int j : temp_2.getNi()) {
-                temp.addNi(j, temp.getDist(j));
+            int a;
+            for (Object j : temp_2.getNi()) {
+                a = (Integer) j;
+                temp.addNi(a, temp.getDist(a));
             }
         }
     }
@@ -69,6 +71,7 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public double getEdge(int node1, int node2) {
+        if(nodes.get(node1) == null || nodes.get(node2) == null) return -1;
         Node n = (Node) nodes.get(node1);
         return n.getDist(node2);
     }
@@ -127,7 +130,9 @@ public class WGraph_DS implements weighted_graph {
         if (getNode(node_id) == null) return null;
         Node m = (Node) nodes.get(node_id);
         ArrayList<node_info> node_list = new ArrayList<>();
-        for (int i : m.getNi()) {
+        int i;
+        for (Object j : m.getNi()) {
+            i = (Integer) j;
             node_list.add(nodes.get(i));
         }
         return node_list;
@@ -144,8 +149,10 @@ public class WGraph_DS implements weighted_graph {
     public node_info removeNode(int key) {
         if (this.getNode(key) != null) {
             Node n = (Node) nodes.get(key);
-            for (int j : n.getNi()) {
-                this.removeEdge(key, j);
+            int i;
+            for (Object j : n.getNi()) {
+                i = (Integer) j;
+                this.removeEdge(key, i);
             }
             mc++;
             nodes.remove(key);
@@ -165,7 +172,7 @@ public class WGraph_DS implements weighted_graph {
         if (this.hasEdge(node1, node2)) {
             Node n1 = (Node) nodes.get(node1);
             Node n2 = (Node) nodes.get(node2);
-            if (n1.hasNi(node2) == true) {
+            if (n1.hasNi(node2)) {
                 n1.removeNode(node2);
                 n2.removeNode(node1);
                 mc++;
@@ -260,12 +267,14 @@ public class WGraph_DS implements weighted_graph {
          * @return key
          */
         public double getDist(int key) {
+            if(this.key == key) return 0;
             if (this.hasNi(key)) return nodes.get(key);
             return -1;
         }
 
-        public Set<Integer> getNi() {
-            return nodes.keySet();
+        public Object[] getNi() {
+            Object[] arr = nodes.keySet().toArray();
+            return arr;
         }
 
         @Override
