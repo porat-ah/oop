@@ -60,6 +60,8 @@ class WGraph_AlgoTest {
 
     @Test
     void save() {
+        ag.init(g);
+        assert ag.save("test.txt");
     }
 
     @Test

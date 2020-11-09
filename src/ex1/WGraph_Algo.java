@@ -1,5 +1,9 @@
 package ex1;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.List;
@@ -86,6 +90,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @param dest - end (target) node
      * @return
      */
+    //TODO shrtestpathdist
     @Override
     public double shortestPathDist(int src, int dest) {
         return 0;
@@ -100,6 +105,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @param dest - end (target) node
      * @return
      */
+    //TODO shrtestpath
     @Override
     public List<node_info> shortestPath(int src, int dest) {
         return null;
@@ -113,8 +119,18 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @return true - iff the file was successfully saved
      */
     @Override
-    public boolean save(String file) {
-        return false;
+    public boolean save(String file)  {
+        try {
+            File f = new File(file);
+            if (f.createNewFile()) {
+                FileWriter fw = new FileWriter(file);
+                fw.write(g.toString());
+                fw.close();
+            }
+            return true;
+        }catch (IOException e){
+            return false;
+        }
     }
 
     /**
