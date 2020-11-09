@@ -31,7 +31,7 @@ public class WGraph_DS implements weighted_graph {
             int a;
             for (Object j : temp_2.getNi()) {
                 a = (Integer) j;
-                temp.addNi(a, temp.getDist(a));
+                temp.addNi(a, temp_2.getDist(a));
             }
         }
     }
@@ -215,7 +215,7 @@ public class WGraph_DS implements weighted_graph {
 
     public String toString() {
         return "WGraph_DS{" +
-                "nodes=" + nodes.keySet() +
+                "nodes=" + nodes.values() +
                 ", num_edge=" + num_edge +
                 ", mc=" + mc +
                 '}';
@@ -327,10 +327,11 @@ public class WGraph_DS implements weighted_graph {
         public String toString() {
             return "Node{" +
                     "key=" + key +
-                    ", ni=" + nodes.keySet() +
                     ", info='" + info +
                     ", tag=" + tag +
-                    '}';
+                    ", neighbors id=" + nodes.keySet() +
+                    ", neighbors dist=" + nodes.values()+
+                    '}'+ "\n" ;
         }
     }
 }
