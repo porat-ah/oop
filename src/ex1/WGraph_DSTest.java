@@ -2,10 +2,7 @@ package ex1;
 
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WGraph_DSTest {
     static WGraph_DS g;

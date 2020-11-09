@@ -3,7 +3,7 @@ package ex1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
+
 
 public class WGraph_DS implements weighted_graph {
     private HashMap<Integer, node_info> nodes;
@@ -83,9 +83,11 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public void addNode(int key) {
-        Node m = new Node(key);
-        nodes.put(key, m);
-        mc++;
+        if(this.getNode(key) == null) {
+            Node m = new Node(key);
+            nodes.put(key, m);
+            mc++;
+        }
     }
 
     /**
