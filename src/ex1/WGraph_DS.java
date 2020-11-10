@@ -1,11 +1,13 @@
 package ex1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 
-public class WGraph_DS implements weighted_graph {
+public class WGraph_DS implements weighted_graph , Serializable {
     private HashMap<Integer, node_info> nodes;
     private int num_edge;
     private int mc;
@@ -36,6 +38,17 @@ public class WGraph_DS implements weighted_graph {
         }
     }
 
+
+    public void reset(){
+        Object[] o = nodes.values().toArray();
+        node_info n;
+       for(Object j : o){
+            n = (node_info) j ;
+            double d = (double) Integer.MAX_VALUE;
+            n.setTag(d);
+            n.setInfo("nv");
+        }
+    }
     /**
      * return the node_data by the node_id,
      *
@@ -221,10 +234,10 @@ public class WGraph_DS implements weighted_graph {
                 '}';
     }
 
-    private class Node implements node_info {
+    private class Node implements node_info , Serializable {
         private int key;
         private String info;
-        private int tag;
+        private double tag;
         private HashMap<Integer, Double> nodes;
 
         public Node(int key) {
@@ -263,11 +276,7 @@ public class WGraph_DS implements weighted_graph {
             nodes.remove(key);
         }
 
-        /**
-         * Return the key (id) associated with this node.
-         *
-         * @return key
-         */
+
         public double getDist(int key) {
             if(this.key == key) return 0;
             if (this.hasNi(key)) return nodes.get(key);
@@ -278,7 +287,11 @@ public class WGraph_DS implements weighted_graph {
             Object[] arr = nodes.keySet().toArray();
             return arr;
         }
-
+        /**
+         * Return the key (id) associated with this node.
+         *
+         * @return key
+         */
         @Override
         public int getKey() {
             return this.key;
@@ -321,7 +334,7 @@ public class WGraph_DS implements weighted_graph {
          */
         @Override
         public void setTag(double t) {
-            this.tag = tag;
+            this.tag = t;
         }
 
         public String toString() {
@@ -330,7 +343,7 @@ public class WGraph_DS implements weighted_graph {
                     ", info='" + info +
                     ", tag=" + tag +
                     ", neighbors id=" + nodes.keySet() +
-                    ", neighbors dist=" + nodes.values()+
+                    ", neighbors dist =" + nodes.values()+
                     '}'+ "\n" ;
         }
     }

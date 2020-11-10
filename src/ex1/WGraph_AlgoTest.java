@@ -2,9 +2,14 @@ package ex1;
 
 import org.junit.jupiter.api.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 class WGraph_AlgoTest {
     static WGraph_DS g;
     static WGraph_Algo ag;
+
     @BeforeEach
     void setUp() {
         g = new WGraph_DS();
@@ -37,25 +42,53 @@ class WGraph_AlgoTest {
     void copy() {
         ag.init(g);
         WGraph_DS g2 = (WGraph_DS) ag.copy();
-        System.out.println(g2);
-        System.out.println(g);
         assert g2.toString().equals(g.toString());
     }
 
     @Test
     void isConnected() {
         ag.init(g);
-        assert !ag.isConnected() ;
-        g.connect(10,9,1);
-        assert ag.isConnected() ;
+        assert !ag.isConnected();
+        g.connect(10, 9, 1);
+        assert ag.isConnected();
     }
 
     @Test
     void shortestPathDist() {
+        ag.init(g);
+        double d = ag.shortestPathDist(0, 7);
+        System.out.println(d);
+        d = ag.shortestPathDist(0, 0);
+        System.out.println(d);
+        d = ag.shortestPathDist(100, 101);
+        System.out.println(d);
+        d = ag.shortestPathDist(100, 100);
+        System.out.println(d);
+        d = ag.shortestPathDist(0, 9);
+        System.out.println(d);
+        g.connect(10,9,100.91);
+        d = ag.shortestPathDist(0, 9);
+        System.out.println(d);
+
     }
 
     @Test
     void shortestPath() {
+        ag.init(g);
+        List<node_info> d = ag.shortestPath(0, 7);
+        System.out.println(d);
+        d = ag.shortestPath(0, 0);
+        System.out.println(d);
+        d = ag.shortestPath(100, 101);
+        System.out.println(d);
+        d = ag.shortestPath(100, 100);
+        System.out.println(d);
+        d = ag.shortestPath(0, 9);
+        System.out.println(d);
+        g.connect(10,9,100.91);
+        d = ag.shortestPath(0, 9);
+        System.out.println(d);
+
     }
 
     @Test
@@ -66,5 +99,11 @@ class WGraph_AlgoTest {
 
     @Test
     void load() {
+        ag.init(g);
+        assert ag.load("test.txt");
+        WGraph_DS g2 = (WGraph_DS) ag.getGraph();
+        String ags = g2.toString();
+        String gs = g.toString();
+        assert ags.equals(gs);
     }
 }
