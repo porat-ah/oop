@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class WGraph_DS implements weighted_graph , Serializable {
@@ -38,7 +37,9 @@ public class WGraph_DS implements weighted_graph , Serializable {
         }
     }
 
-
+    /**
+     * resets the graph for the algorithms
+     */
     public void reset(){
         Object[] o = nodes.values().toArray();
         node_info n;

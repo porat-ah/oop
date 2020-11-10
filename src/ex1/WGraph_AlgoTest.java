@@ -2,7 +2,6 @@ package ex1;
 
 import org.junit.jupiter.api.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,18 +56,18 @@ class WGraph_AlgoTest {
     void shortestPathDist() {
         ag.init(g);
         double d = ag.shortestPathDist(0, 7);
-        System.out.println(d);
+        assert d == 9;
         d = ag.shortestPathDist(0, 0);
-        System.out.println(d);
+        assert d == 0;
         d = ag.shortestPathDist(100, 101);
-        System.out.println(d);
+        assert d == -1;
         d = ag.shortestPathDist(100, 100);
-        System.out.println(d);
+        assert d == -1;
         d = ag.shortestPathDist(0, 9);
-        System.out.println(d);
+        assert d == -1;
         g.connect(10,9,100.91);
         d = ag.shortestPathDist(0, 9);
-        System.out.println(d);
+        assert d == 104.91;
 
     }
 
@@ -76,18 +75,32 @@ class WGraph_AlgoTest {
     void shortestPath() {
         ag.init(g);
         List<node_info> d = ag.shortestPath(0, 7);
-        System.out.println(d);
+        ArrayList<node_info> arr = new ArrayList<>();
+        arr.add(g.getNode(0));
+        arr.add(g.getNode(1));
+        arr.add(g.getNode(4));
+        arr.add(g.getNode(6));
+        arr.add(g.getNode(7));
+        assert d.equals(arr);
         d = ag.shortestPath(0, 0);
-        System.out.println(d);
+        arr= new ArrayList<>();
+        arr.add(g.getNode(0));
+        assert d.equals(arr);
         d = ag.shortestPath(100, 101);
-        System.out.println(d);
+        assert d == null;
         d = ag.shortestPath(100, 100);
-        System.out.println(d);
+        assert d == null;
         d = ag.shortestPath(0, 9);
-        System.out.println(d);
+        assert d == null;
         g.connect(10,9,100.91);
         d = ag.shortestPath(0, 9);
-        System.out.println(d);
+        arr= new ArrayList<>();
+        arr.add(g.getNode(0));
+        arr.add(g.getNode(3));
+        arr.add(g.getNode(5));
+        arr.add(g.getNode(10));
+        arr.add(g.getNode(9));
+        assert d.equals(arr);
 
     }
 

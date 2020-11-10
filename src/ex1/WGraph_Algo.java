@@ -108,8 +108,12 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     //TODO shrtestpath
     @Override
     public List<node_info> shortestPath(int src, int dest) {
-        Iterator<ArrayList<node_info>> it  = ShortestPathFunc(src, dest).values().iterator();
-        return (List<node_info>) it.next();
+        Set<Double> h = ShortestPathFunc(src, dest).keySet();
+        Iterator<Double> it1 = h.iterator();
+        if(it1.next() == -1)
+            return null;
+        Iterator<ArrayList<node_info>> it2  = ShortestPathFunc(src, dest).values().iterator();
+        return (List<node_info>) it2.next();
 
 
     }
@@ -222,34 +226,3 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         }
     }
 }
-/*
- if ((g.getNode(src) == null) || (g.getNode(dest) == null)) return -1;
-        if (g.nodeSize() != 0) {
-            g.reset();
-            PriorityQueue<node_info> pq = new PriorityQueue(Comparator.comparing(node_info::getTag));
-            HashSet<Integer> v = new HashSet<>();
-            pq.add(g.getNode(src));
-            g.getNode(src).setTag(0);
-            node_info n , m;
-            double dist;
-            while (!pq.isEmpty()) {
-                n = pq.poll();
-                if (!v.contains(n.getKey()))
-                    v.add(n.getKey());
-                if(n.getKey() == dest)
-                    return n.getTag();
-                Object[] o = g.getV(n.getKey()).toArray();
-                for(Object j : o){
-                    dist = n.getTag();
-                    m = (node_info) j ;
-                    dist += g.getEdge(n.getKey(),m.getKey());
-                    if(dist < m.getTag()) {
-                        m.setTag(dist);
-                        pq.add(m);
-                    }
-                }
-            }
-        return -1;
-        }
-        return 0;
- */
