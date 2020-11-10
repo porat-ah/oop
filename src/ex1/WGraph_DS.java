@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 
-public class WGraph_DS implements weighted_graph , Serializable {
+public class WGraph_DS implements weighted_graph, Serializable {
     private HashMap<Integer, node_info> nodes;
     private int num_edge;
     private int mc;
@@ -40,16 +40,17 @@ public class WGraph_DS implements weighted_graph , Serializable {
     /**
      * resets the graph for the algorithms
      */
-    public void reset(){
+    public void reset() {
         Object[] o = nodes.values().toArray();
         node_info n;
-       for(Object j : o){
-            n = (node_info) j ;
+        for (Object j : o) {
+            n = (node_info) j;
             double d = (double) Integer.MAX_VALUE;
             n.setTag(d);
             n.setInfo("nv");
         }
     }
+
     /**
      * return the node_data by the node_id,
      *
@@ -77,7 +78,8 @@ public class WGraph_DS implements weighted_graph , Serializable {
     }
 
     /**
-     * return the weight if the edge (node1, node1).
+     * return the weight if the edge (node1, node2) exist.
+     * in case there is no such egde return -1
      *
      * @param node1
      * @param node2
@@ -85,7 +87,7 @@ public class WGraph_DS implements weighted_graph , Serializable {
      */
     @Override
     public double getEdge(int node1, int node2) {
-        if(nodes.get(node1) == null || nodes.get(node2) == null) return -1;
+        if (nodes.get(node1) == null || nodes.get(node2) == null) return -1;
         Node n = (Node) nodes.get(node1);
         return n.getDist(node2);
     }
@@ -97,7 +99,7 @@ public class WGraph_DS implements weighted_graph , Serializable {
      */
     @Override
     public void addNode(int key) {
-        if(this.getNode(key) == null) {
+        if (this.getNode(key) == null) {
             Node m = new Node(key);
             nodes.put(key, m);
             mc++;
@@ -235,7 +237,7 @@ public class WGraph_DS implements weighted_graph , Serializable {
                 '}';
     }
 
-    private class Node implements node_info , Serializable {
+    private class Node implements node_info, Serializable {
         private int key;
         private String info;
         private double tag;
@@ -277,17 +279,30 @@ public class WGraph_DS implements weighted_graph , Serializable {
             nodes.remove(key);
         }
 
-
+        /**
+         * this function return the dist between the node to the
+         * node represented by the given node_id
+         * in case there are not neighbors return -1
+         *
+         * @param key
+         * @return
+         */
         public double getDist(int key) {
-            if(this.key == key) return 0;
+            if (this.key == key) return 0;
             if (this.hasNi(key)) return nodes.get(key);
             return -1;
         }
 
+        /**
+         * return an array of all the node's neighbors node_ids
+         *
+         * @return
+         */
         public Object[] getNi() {
             Object[] arr = nodes.keySet().toArray();
             return arr;
         }
+
         /**
          * Return the key (id) associated with this node.
          *
@@ -344,8 +359,8 @@ public class WGraph_DS implements weighted_graph , Serializable {
                     ", info='" + info +
                     ", tag=" + tag +
                     ", neighbors id=" + nodes.keySet() +
-                    ", neighbors dist =" + nodes.values()+
-                    '}'+ "\n" ;
+                    ", neighbors dist =" + nodes.values() +
+                    '}' + "\n";
         }
     }
 }

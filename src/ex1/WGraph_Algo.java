@@ -71,10 +71,13 @@ public class WGraph_Algo implements weighted_graph_algorithms {
                         q.add(j);
                         prev.put(j.getKey(), node);
                     }
-
+                    // if the node j doesn't have a parent in the parent list adds n to it
                 }
             }
+            // goes through every node in the graph that connected to the first node
+            // and adds their parent to the parent list
             return (prev.size() == n);
+            // check if the parent list size equals to the number of all the graph's nodes
         }
         return true;
     }
