@@ -32,6 +32,7 @@ class WGraph_DSTest {
         for (int i = 0; i < 11; i++) {
             System.out.println(g.getNode(i));
         }
+        System.out.println(g.hashCode());
     }
 
     @Test
@@ -178,5 +179,20 @@ class WGraph_DSTest {
         assert g.getMC() == 27;
         g.removeNode(3);
         assert g.getMC() == 31;
+    }
+    @Test
+    void graph_limits(){
+        WGraph_DS g1 = new WGraph_DS();
+        for (int i = 0; i < 1_000_000; i++) {
+            g1.addNode(i);
+        }
+        int j = 1;
+        for (int i = 0; i < 500_000; i++) {
+            while(j%11 != 0) {
+                g1.connect(i,j,5);
+                j++;
+            }
+            j++;
+        }
     }
 }

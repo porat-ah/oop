@@ -1,7 +1,6 @@
 package ex1;
 
 import org.junit.jupiter.api.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,9 @@ class WGraph_AlgoTest {
     void copy() {
         ag.init(g);
         WGraph_DS g2 = (WGraph_DS) ag.copy();
-        assert g2.toString().equals(g.toString());
+        assert g2.equals(g);
+        g2.connect(0,9,1);
+        assert !g2.equals(g);
     }
 
     @Test
@@ -118,5 +119,39 @@ class WGraph_AlgoTest {
         String ags = g2.toString();
         String gs = g.toString();
         assert ags.equals(gs);
+    }
+    @Test
+    void WGraph_Algo_limits(){
+        WGraph_DS g1 = new WGraph_DS();
+        for (int i = 0; i < 1_000_000; i++) {
+            g1.addNode(i);
+        }
+        for (int i = 0; i < 1_000_000-5; i++) {
+            g1.connect(i,i+1,1);
+            g1.connect(i,i+2,1);
+            g1.connect(i,i+3,1);
+            g1.connect(i,i+4,1);
+            g1.connect(i,i+5,1);
+        }
+        g1 = new WGraph_DS();
+        for (int i = 0; i < 1_000_000; i++) {
+            g1.addNode(i);
+        }
+        for (int i = 0; i < 1_000_000-1; i++) {
+            g1.connect(i,i+1,1);
+        }
+        ag.init(g1);
+        int j ;
+        assert ag.isConnected();
+        for (int i = 0; i < 10; i++) {
+            int node1 = (int) (Math.random()*1_000_001);
+            int node2 = (int) (Math.random()*1_000_001);
+             j = (node1 - node2);
+            assert Math.abs(j) == ag.shortestPathDist(node1,node2);
+        }
+        g1 = new WGraph_DS();
+        for (int i = 0; i < 1_000_000; i++) {
+            g1.addNode(i);
+        }
     }
 }

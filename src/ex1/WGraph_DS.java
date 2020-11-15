@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class WGraph_DS implements weighted_graph, Serializable {
@@ -237,6 +238,28 @@ public class WGraph_DS implements weighted_graph, Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WGraph_DS other = (WGraph_DS) o;
+        boolean b = true;
+        Node n, m;
+        if (this.nodeSize() != other.nodeSize()) return false;
+        for (int i : this.nodes.keySet()) {
+            n = (Node) this.getNode(i);
+            m = (Node) other.getNode(i);
+            b = b && n.equals(m);
+        }
+        return num_edge == other.num_edge &&
+                mc == other.mc && b;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nodes, num_edge, mc);
+    }
+
     private class Node implements node_info, Serializable {
         private int key;
         private String info;
@@ -361,6 +384,23 @@ public class WGraph_DS implements weighted_graph, Serializable {
                     ", neighbors id=" + nodes.keySet() +
                     ", neighbors dist =" + nodes.values() +
                     '}' + "\n";
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node node = (Node) o;
+            boolean b = true;
+            return key == node.key &&
+                    Double.compare(node.tag, tag) == 0 &&
+                    Objects.equals(info, node.info) &&
+                    Objects.equals(nodes, node.nodes);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(key, info, tag, nodes);
         }
     }
 }
