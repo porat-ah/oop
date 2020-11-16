@@ -92,9 +92,8 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     //TODO shrtestpathdist
     @Override
     public double shortestPathDist(int src, int dest) {
-        Set<Double> h = ShortestPathFunc(src, dest).keySet();
-        Iterator<Double> it = h.iterator();
-        return  it.next();
+        Pair<Double, ArrayList<node_info>> p = ShortestPathFunc(src, dest);
+        return p.getT();
 
     }
 
@@ -110,14 +109,10 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     //TODO shrtestpath
     @Override
     public List<node_info> shortestPath(int src, int dest) {
-        Set<Double> h = ShortestPathFunc(src, dest).keySet();
-        Iterator<Double> it1 = h.iterator();
-        if(it1.next() == -1)
+        Pair<Double, ArrayList<node_info>> p = ShortestPathFunc(src, dest);
+        if (p.getT() == -1)
             return null;
-        Iterator<ArrayList<node_info>> it2  = ShortestPathFunc(src, dest).values().iterator();
-        return (List<node_info>) it2.next();
-
-
+        return p.getE();
     }
 
     /**
@@ -128,8 +123,8 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @param dest
      * @return
      */
-    private HashMap<Double, ArrayList<node_info>> ShortestPathFunc(int src, int dest) {
-        HashMap<Double, ArrayList<node_info>> h = new HashMap<>();
+    private Pair<Double, ArrayList<node_info>> ShortestPathFunc(int src, int dest) {
+        Pair<Double, ArrayList<node_info>> h = new Pair<Double, ArrayList<node_info>>();
         ArrayList<node_info> al = new ArrayList<>();
         if ((g.getNode(src) == null) || (g.getNode(dest) == null)) {
             h.put(-1.0, al);
@@ -149,7 +144,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
                     n.setInfo("v");
                 // sets n to visited
                 if (n.getKey() == dest) {
-                    for (node_info at =  g.getNode(dest); at != null; at = prev.get(at.getKey())) {
+                    for (node_info at = g.getNode(dest); at != null; at = prev.get(at.getKey())) {
                         al.add(at);
                     }
                     // create the list of the shortest path to the dest node
@@ -225,6 +220,33 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             return false;
         } catch (ClassNotFoundException e) {
             return false;
+        }
+    }
+
+
+    private class Pair<T, E> {
+        private T t;
+        private E e;
+
+        public void put(T t, E e) {
+            this.t = t;
+            this.e = e;
+        }
+
+        public T getT() {
+            return t;
+        }
+
+        public void setT(T t) {
+            this.t = t;
+        }
+
+        public E getE() {
+            return e;
+        }
+
+        public void setE(E e) {
+            this.e = e;
         }
     }
 }

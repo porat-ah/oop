@@ -154,4 +154,19 @@ class WGraph_AlgoTest {
             g1.addNode(i);
         }
     }
+
+    @Test
+    void isconnected_time(){
+        ag.init(g);
+        for (int i = 0; i < 1_000; i++) {
+            ag.isConnected();
+        }
+    }
+    @Test
+    void shortestpathdist_time(){
+        ag.init(g);
+        for (int i = 0; i < 1_000; i++) {
+            ag.shortestPathDist(0,8);
+        }
+    }
 }
