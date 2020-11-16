@@ -1,6 +1,7 @@
 package ex1;
 
 import org.junit.jupiter.api.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ class WGraph_AlgoTest {
         ag.init(g);
         WGraph_DS g2 = (WGraph_DS) ag.copy();
         assert g2.equals(g);
-        g2.connect(0,9,1);
+        g2.connect(0, 9, 1);
         assert !g2.equals(g);
     }
 
@@ -66,7 +67,7 @@ class WGraph_AlgoTest {
         assert d == -1;
         d = ag.shortestPathDist(0, 9);
         assert d == -1;
-        g.connect(10,9,100.91);
+        g.connect(10, 9, 100.91);
         d = ag.shortestPathDist(0, 9);
         assert d == 104.91;
 
@@ -84,7 +85,7 @@ class WGraph_AlgoTest {
         arr.add(g.getNode(7));
         assert d.equals(arr);
         d = ag.shortestPath(0, 0);
-        arr= new ArrayList<>();
+        arr = new ArrayList<>();
         arr.add(g.getNode(0));
         assert d.equals(arr);
         d = ag.shortestPath(100, 101);
@@ -93,9 +94,9 @@ class WGraph_AlgoTest {
         assert d == null;
         d = ag.shortestPath(0, 9);
         assert d == null;
-        g.connect(10,9,100.91);
+        g.connect(10, 9, 100.91);
         d = ag.shortestPath(0, 9);
-        arr= new ArrayList<>();
+        arr = new ArrayList<>();
         arr.add(g.getNode(0));
         arr.add(g.getNode(3));
         arr.add(g.getNode(5));
@@ -120,34 +121,35 @@ class WGraph_AlgoTest {
         String gs = g.toString();
         assert ags.equals(gs);
     }
+
     @Test
-    void WGraph_Algo_limits(){
+    void WGraph_Algo_limits() {
         WGraph_DS g1 = new WGraph_DS();
         for (int i = 0; i < 1_000_000; i++) {
             g1.addNode(i);
         }
-        for (int i = 0; i < 1_000_000-5; i++) {
-            g1.connect(i,i+1,1);
-            g1.connect(i,i+2,1);
-            g1.connect(i,i+3,1);
-            g1.connect(i,i+4,1);
-            g1.connect(i,i+5,1);
+        for (int i = 0; i < 1_000_000 - 5; i++) {
+            g1.connect(i, i + 1, 1);
+            g1.connect(i, i + 2, 1);
+            g1.connect(i, i + 3, 1);
+            g1.connect(i, i + 4, 1);
+            g1.connect(i, i + 5, 1);
         }
         g1 = new WGraph_DS();
         for (int i = 0; i < 1_000_000; i++) {
             g1.addNode(i);
         }
-        for (int i = 0; i < 1_000_000-1; i++) {
-            g1.connect(i,i+1,1);
+        for (int i = 0; i < 1_000_000 - 1; i++) {
+            g1.connect(i, i + 1, 1);
         }
         ag.init(g1);
-        int j ;
+        int j;
         assert ag.isConnected();
         for (int i = 0; i < 10; i++) {
-            int node1 = (int) (Math.random()*1_000_001);
-            int node2 = (int) (Math.random()*1_000_001);
-             j = (node1 - node2);
-            assert Math.abs(j) == ag.shortestPathDist(node1,node2);
+            int node1 = (int) (Math.random() * 1_000_001);
+            int node2 = (int) (Math.random() * 1_000_001);
+            j = (node1 - node2);
+            assert Math.abs(j) == ag.shortestPathDist(node1, node2);
         }
         g1 = new WGraph_DS();
         for (int i = 0; i < 1_000_000; i++) {
@@ -156,17 +158,18 @@ class WGraph_AlgoTest {
     }
 
     @Test
-    void isconnected_time(){
+    void isconnected_time() {
         ag.init(g);
         for (int i = 0; i < 1_000; i++) {
             ag.isConnected();
         }
     }
+
     @Test
-    void shortestpathdist_time(){
+    void shortestpathdist_time() {
         ag.init(g);
         for (int i = 0; i < 1_000; i++) {
-            ag.shortestPathDist(0,8);
+            ag.shortestPathDist(0, 8);
         }
     }
 }
