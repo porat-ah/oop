@@ -1,10 +1,10 @@
 package ex1;
 
 import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.util.ArrayList;
 import java.util.List;
-
+@TestMethodOrder(OrderAnnotation.class)
 class WGraph_AlgoTest {
     static WGraph_DS g;
     static WGraph_Algo ag;
@@ -106,12 +106,14 @@ class WGraph_AlgoTest {
 
     }
 
+    @Order(1)
     @Test
     void save() {
         ag.init(g);
         assert ag.save("test.txt");
     }
 
+    @Order(2)
     @Test
     void load() {
         ag.init(g);
