@@ -34,6 +34,11 @@ https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorit
 BFS algorithm:
 https://www.youtube.com/watch?v=oDqjPvD54Ss
 
+Clone:
+---------
+````
+git clone --single-branch --branch task1 https://github.com/porat-ah/oop.git
+````
 A simple run:
 =============
 main
