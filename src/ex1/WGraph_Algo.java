@@ -140,7 +140,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             double dist;
             while (!pq.isEmpty()) {
                 n = pq.poll();
-                if (n.getInfo() == "nv")
+                if (n.getInfo().equals("nv"))
                     n.setInfo("v");
                 // sets n to visited
                 if (n.getKey() == dest) {
