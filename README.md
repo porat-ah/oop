@@ -38,7 +38,7 @@ A simple run:
 =============
 main
 -----
-'''
+````
 package ex1;
 public class Main {
     public static void main(String[] args) {
@@ -63,10 +63,10 @@ public class Main {
         System.out.println(ag.shortestPath(0,6));
     }
 }
-'''
+````
 Output:
 -------
-'''
+ ````
 true
 2.0
 true
@@ -79,7 +79,7 @@ true
 , Node{key=3, info='v, tag=10.0, neighbors id=[1, 5, 6], neighbors dist =[9.0, 4.0, 1.0]}
 , Node{key=6, info='v, tag=11.0, neighbors id=[3], neighbors dist =[1.0]}
 ]
-'''
+````
 The Graph:
 ----------
 
