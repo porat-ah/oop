@@ -33,3 +33,53 @@ https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorit
 
 BFS algorithm:
 https://www.youtube.com/watch?v=oDqjPvD54Ss
+
+A simple run:
+=============
+main
+-----
+
+package ex1;
+public class Main {
+    public static void main(String[] args) {
+        WGraph_DS graph = new WGraph_DS();
+        for (int i = 0; i < 7; i++) {
+            graph.addNode(i);
+        }
+        graph.connect(0,1,2);
+        graph.connect(0,2,4);
+        graph.connect(3,1,9);
+        graph.connect(1,2,1);
+        graph.connect(2,4,2);
+        graph.connect(4,5,1);
+        graph.connect(3,5,4);
+        graph.connect(3,6,1);
+        System.out.println(graph.hasEdge(0,1));
+        System.out.println(graph.getEdge(0,1));
+        WGraph_Algo ag = new WGraph_Algo();
+        ag.init(graph);
+        System.out.println(ag.isConnected());
+        System.out.println(ag.shortestPathDist(0,6));
+        System.out.println(ag.shortestPath(0,6));
+    }
+}
+
+Output:
+-------
+true
+2.0
+true
+11.0
+[Node{key=0, info='v, tag=0.0, neighbors id=[1, 2], neighbors dist =[2.0, 4.0]}
+, Node{key=1, info='v, tag=2.0, neighbors id=[0, 2, 3], neighbors dist =[2.0, 1.0, 9.0]}
+, Node{key=2, info='v, tag=3.0, neighbors id=[0, 1, 4], neighbors dist =[4.0, 1.0, 2.0]}
+, Node{key=4, info='v, tag=5.0, neighbors id=[2, 5], neighbors dist =[2.0, 1.0]}
+, Node{key=5, info='v, tag=6.0, neighbors id=[3, 4], neighbors dist =[4.0, 1.0]}
+, Node{key=3, info='v, tag=10.0, neighbors id=[1, 5, 6], neighbors dist =[9.0, 4.0, 1.0]}
+, Node{key=6, info='v, tag=11.0, neighbors id=[3], neighbors dist =[1.0]}
+]
+
+The Graph:
+----------
+
+![graph](/images/graph.png)
