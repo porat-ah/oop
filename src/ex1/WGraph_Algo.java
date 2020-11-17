@@ -237,16 +237,9 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             return t;
         }
 
-        public void setT(T t) {
-            this.t = t;
-        }
-
         public E getE() {
             return e;
         }
 
-        public void setE(E e) {
-            this.e = e;
-        }
     }
 }
