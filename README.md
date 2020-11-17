@@ -88,4 +88,4 @@ true
 The Graph:
 ----------
 
-![graph](/images/graph.png)
+![graph simple run](/images/graph.png)
