@@ -117,11 +117,11 @@ class WGraph_AlgoTest {
     @Test
     void load() {
         ag.init(g);
-        assert ag.load("test.txt");
+        if (!ag.load("test.txt")) throw new AssertionError();
         WGraph_DS g2 = (WGraph_DS) ag.getGraph();
         String ags = g2.toString();
         String gs = g.toString();
-        assert ags.equals(gs);
+        if (!ags.equals(gs)) throw new AssertionError();
     }
 
     @Test
@@ -137,6 +137,8 @@ class WGraph_AlgoTest {
             g1.connect(i, i + 4, 1);
             g1.connect(i, i + 5, 1);
         }
+        ag.init(g1);
+        assert ag.isConnected();
         g1 = new WGraph_DS();
         for (int i = 0; i < 1_000_000; i++) {
             g1.addNode(i);
@@ -153,14 +155,10 @@ class WGraph_AlgoTest {
             j = (node1 - node2);
             assert Math.abs(j) == ag.shortestPathDist(node1, node2);
         }
-        g1 = new WGraph_DS();
-        for (int i = 0; i < 1_000_000; i++) {
-            g1.addNode(i);
-        }
     }
 
     @Test
-    void isconnected_time() {
+    void isConnected_time() {
         ag.init(g);
         for (int i = 0; i < 1_000; i++) {
             ag.isConnected();
@@ -168,7 +166,7 @@ class WGraph_AlgoTest {
     }
 
     @Test
-    void shortestpathdist_time() {
+    void shortestPathDist_time() {
         ag.init(g);
         for (int i = 0; i < 1_000; i++) {
             ag.shortestPathDist(0, 8);

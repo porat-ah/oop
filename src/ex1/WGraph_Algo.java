@@ -50,12 +50,11 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      */
     @Override
     public weighted_graph copy() {
-        WGraph_DS ng = new WGraph_DS(g);
-        return ng;
+        return new WGraph_DS(g);
     }
 
     /**
-     * Returns true if and only if (iff) there is a valid path from EVREY node to each
+     * Returns true if and only if (iff) there is a valid path from every node to each
      * other node.
      *
      * @return
@@ -65,7 +64,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         if (g.nodeSize() != 0) {
             int n = g.nodeSize();
             Object[] nl = g.getV().toArray();
-            ArrayDeque<node_info> q = new ArrayDeque<node_info>();
+            ArrayDeque<node_info> q = new ArrayDeque<>();
             q.add((node_info) nl[0]);
             HashMap<Integer, node_info> prev = new HashMap<>(n);
             prev.put(((node_info) nl[0]).getKey(), (node_info) nl[0]);
@@ -124,7 +123,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
     }
 
     private Pair<Double, ArrayList<node_info>> ShortestPathFunc(int src, int dest) {
-        Pair<Double, ArrayList<node_info>> h = new Pair<Double, ArrayList<node_info>>();
+        Pair<Double, ArrayList<node_info>> h = new Pair<>();
         ArrayList<node_info> al = new ArrayList<>();
         if ((g.getNode(src) == null) || (g.getNode(dest) == null)) {
             h.put(-1.0, al);
@@ -190,9 +189,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             oos.writeObject(g);
             oos.close();
             return true;
-        } catch (FileNotFoundException fileNotFoundException) {
-            return false;
-        } catch (IOException ioException) {
+        } catch (IOException fileNotFoundException) {
             return false;
         }
     }
@@ -214,17 +211,13 @@ public class WGraph_Algo implements weighted_graph_algorithms {
             g = (WGraph_DS) ois.readObject();
             ois.close();
             return true;
-        } catch (FileNotFoundException e) {
-            return false;
-        } catch (IOException e) {
-            return false;
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             return false;
         }
     }
 
 
-    private class Pair<T, E> {
+    private static class Pair<T, E> {
         private T t;
         private E e;
 

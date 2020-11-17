@@ -1,8 +1,7 @@
 package ex1;
 
-import org.junit.jupiter.api.*;
-
-import java.util.Collection;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class WGraph_DSTest {
     static WGraph_DS g;
@@ -76,25 +75,26 @@ class WGraph_DSTest {
 
     @Test
     void getV() {
-        assert g.getV() instanceof Collection;
+        assert g.getV() != null;
         Object[] arr = g.getV().toArray();
         for (int i = 0; i < arr.length; i++) {
-            assert (node_info) arr[i] == g.getNode(i);
+            assert arr[i] == g.getNode(i);
         }
     }
 
     @Test
     void testGetV() {
-        assert g.getV(0) instanceof Collection;
+        assert g.getV(0) != null;
         Object[] arr = g.getV(0).toArray();
         node_info n;
-        String s = "";
-        for (int i = 0; i < arr.length; i++) {
-            n = (node_info) arr[i];
+        StringBuilder s;
+        s = new StringBuilder();
+        for (Object o : arr) {
+            n = (node_info) o;
             assert n == g.getNode(n.getKey());
-            s = s + n.getKey();
+            s.append(n.getKey());
         }
-        assert s.equals("123");
+        assert s.toString().equals("123");
     }
 
     @Test
@@ -108,13 +108,13 @@ class WGraph_DSTest {
         boolean b;
         n = g.removeNode(3);
         assert n.getKey() == 3;
-        for (int i = 0; i < arr.length; i++) {
-            n = (node_info) arr[i];
+        for (Object o : arr) {
+            n = (node_info) o;
             assert !g.hasEdge(3, n.getKey());
             Object[] arr2 = g.getV(n.getKey()).toArray();
             b = true;
-            for (int j = 0; j < arr2.length; j++) {
-                m = (node_info) arr2[j];
+            for (Object value : arr2) {
+                m = (node_info) value;
                 if (m.getKey() == 3)
                     b = false;
                 assert b;
@@ -134,8 +134,8 @@ class WGraph_DSTest {
         node_info m;
         Object[] arr = g.getV(10).toArray();
         boolean b = true;
-        for (int j = 0; j < arr.length; j++) {
-            m = (node_info) arr[j];
+        for (Object o : arr) {
+            m = (node_info) o;
             if (m.getKey() == 9)
                 b = false;
             assert b;

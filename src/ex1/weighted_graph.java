@@ -2,7 +2,7 @@ package ex1;
 import java.util.Collection;
 
 /**
- * This interface represents an undirectional weighted graph.
+ * This interface represents an undirected weighted graph.
  * It should support a large number of nodes (over 10^6, with average degree of 10).
  * The implementation should be based on an efficient compact representation
  * (should NOT be based on a n*n matrix).
@@ -81,7 +81,7 @@ public interface weighted_graph {
      */
     public int nodeSize();
     /**
-     * return the number of edges (undirectional graph).
+     * return the number of edges (undirected graph).
      * Note: this method should run in O(1) time.
      * @return
      */

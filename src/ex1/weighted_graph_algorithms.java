@@ -31,8 +31,8 @@ public interface weighted_graph_algorithms {
      */
     public weighted_graph copy();
     /**
-     * Returns true if and only if (iff) there is a valid path from EVREY node to each
-     * other node. NOTE: assume ubdirectional graph.
+     * Returns true if and only if (iff) there is a valid path from every node to each
+     * other node. NOTE: assume undirected graph.
      * @return
      */
     public boolean isConnected();

@@ -8,16 +8,16 @@ import java.util.Objects;
 
 /**
  * this class implements the interface weighted_graph :
- * The interface represents an undirectional weighted graph.
+ * The interface represents an undirected weighted graph.
  */
 
 public class WGraph_DS implements weighted_graph, Serializable {
-    private HashMap<Integer, node_info> nodes;
+    private final HashMap<Integer, node_info> nodes;
     private int num_edge;
     private int mc;
 
     public WGraph_DS() {
-        nodes = new HashMap<Integer, node_info>(1_000_000);
+        nodes = new HashMap<>(1_000_000);
         mc = 0;
         num_edge = 0;
     }
@@ -50,7 +50,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
         node_info n;
         for (Object j : o) {
             n = (node_info) j;
-            double d = (double) Integer.MAX_VALUE;
+            double d = Integer.MAX_VALUE;
             n.setTag(d);
             n.setInfo("nv");
         }
@@ -84,7 +84,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
 
     /**
      * return the weight if the edge (node1, node2) exist.
-     * in case there is no such egde return -1
+     * in case there is no such edge return -1
      *
      * @param node1
      * @param node2
@@ -215,7 +215,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
     }
 
     /**
-     * return the number of edges (undirectional graph).
+     * return the number of edges (undirected graph).
      *
      * @return
      */
@@ -264,11 +264,11 @@ public class WGraph_DS implements weighted_graph, Serializable {
         return Objects.hash(nodes, num_edge, mc);
     }
 
-    private class Node implements node_info, Serializable {
-        private int key;
+    private static class Node implements node_info, Serializable {
+        private final int key;
         private String info;
         private double tag;
-        private HashMap<Integer, Double> nodes;
+        private final HashMap<Integer, Double> nodes;
 
         public Node(int key) {
             this.key = key;
@@ -326,8 +326,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
          * @return
          */
         public Object[] getNi() {
-            Object[] arr = nodes.keySet().toArray();
-            return arr;
+            return nodes.keySet().toArray();
         }
 
         /**
@@ -395,7 +394,6 @@ public class WGraph_DS implements weighted_graph, Serializable {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Node node = (Node) o;
-            boolean b = true;
             return key == node.key &&
                     Double.compare(node.tag, tag) == 0 &&
                     Objects.equals(info, node.info) &&
