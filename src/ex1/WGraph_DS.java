@@ -6,6 +6,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * this class implements the interface weighted_graph :
+ * The interface represents an undirectional weighted graph.
+ */
 
 public class WGraph_DS implements weighted_graph, Serializable {
     private HashMap<Integer, node_info> nodes;

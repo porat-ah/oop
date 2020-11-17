@@ -3,6 +3,15 @@ package ex1;
 import java.io.*;
 import java.util.*;
 
+/**
+ * this class implements the interface weighted_graph_algorithms :
+ * Thee interface represents an Undirected Weighted Graph Theory algorithms.
+ * this class functions are inspired by
+ * https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorithm-2ctyF
+ * (shortestPath , shortestPathDist)
+ * https://www.youtube.com/watch?v=oDqjPvD54Ss
+ * (isConnected)
+ */
 public class WGraph_Algo implements weighted_graph_algorithms {
     private WGraph_DS g;
 
@@ -89,7 +98,7 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @param dest - end (target) node
      * @return
      */
-    //TODO shrtestpathdist
+
     @Override
     public double shortestPathDist(int src, int dest) {
         Pair<Double, ArrayList<node_info>> p = ShortestPathFunc(src, dest);
@@ -106,7 +115,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
      * @param dest - end (target) node
      * @return
      */
-    //TODO shrtestpath
     @Override
     public List<node_info> shortestPath(int src, int dest) {
         Pair<Double, ArrayList<node_info>> p = ShortestPathFunc(src, dest);
@@ -115,14 +123,6 @@ public class WGraph_Algo implements weighted_graph_algorithms {
         return p.getE();
     }
 
-    /**
-     * return a pair <the shortest path dist , shortest path list>
-     * this function was inspired by https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorithm-2ctyF
-     *
-     * @param src
-     * @param dest
-     * @return
-     */
     private Pair<Double, ArrayList<node_info>> ShortestPathFunc(int src, int dest) {
         Pair<Double, ArrayList<node_info>> h = new Pair<Double, ArrayList<node_info>>();
         ArrayList<node_info> al = new ArrayList<>();
