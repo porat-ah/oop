@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * this class implements the interface weighted_graph_algorithms :
+ * this class implements the interface src.weighted_graph_algorithms :
  * Thee interface represents an Undirected Weighted Graph Theory algorithms.
  * this class functions are inspired by
  * https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorithm-2ctyF

@@ -37,7 +37,7 @@ class WGraph_DSTest {
     @Test
     void hasEdge() {
         assert g.hasEdge(0, 1);
-        assert g.hasEdge(0, 0);
+        assert !g.hasEdge(0, 0);
         assert !g.hasEdge(0, 100);
         assert !g.hasEdge(0, 4);
         assert !g.hasEdge(100, 100);
@@ -168,8 +168,8 @@ class WGraph_DSTest {
 
     @Test
     void getMC() {
-       assert g.getMC() == 23;
-       g.connect(1,3,1);
+        assert g.getMC() == 23;
+        g.connect(1,3,1);
         assert g.getMC() == 24;
         g.removeEdge(1,3);
         assert g.getMC() == 25;

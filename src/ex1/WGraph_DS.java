@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * this class implements the interface weighted_graph :
+ * this class implements the interface src.weighted_graph :
  * The interface represents an undirected weighted graph.
  */
 
@@ -76,8 +76,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
      */
     @Override
     public boolean hasEdge(int node1, int node2) {
-        if (this.getNode(node1) == null || this.getNode(node2) == null) return false;
-        if (node1 == node2) return true;
+        if (this.getNode(node1) == null || this.getNode(node2) == null || node1 == node2) return false;
         Node n = (Node) this.getNode(node1);
         return n.hasNi(node2);
     }
@@ -134,7 +133,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
      * This method return a pointer (shallow copy) for a
      * Collection representing all the nodes in the graph.
      *
-     * @return Collection<node_info>
+     * @return Collection<src.node_info>
      */
     @Override
     public Collection<node_info> getV() {
@@ -146,7 +145,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
      * nodes connected to node_id
      *
      * @param node_id
-     * @return Collection<node_info>
+     * @return Collection<src.node_info>
      */
     @Override
     public Collection<node_info> getV(int node_id) {
@@ -235,7 +234,7 @@ public class WGraph_DS implements weighted_graph, Serializable {
     }
 
     public String toString() {
-        return "WGraph_DS{" +
+        return "src.WGraph_DS{" +
                 "nodes=" + nodes.values() +
                 ", num_edge=" + num_edge +
                 ", mc=" + mc +
