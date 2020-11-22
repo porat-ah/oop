@@ -1,5 +1,8 @@
-package ex1;
+package ex1.tests;
 
+import ex1.src.WGraph_Algo;
+import ex1.src.WGraph_DS;
+import ex1.src.node_info;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.util.ArrayList;
